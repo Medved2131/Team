@@ -2,6 +2,7 @@
 <html lang="uk">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Команда мрії — 4 футболісти</title>
 <style>
 @import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,700,900');
@@ -111,10 +112,11 @@ input.nav { display: none; }
   width: 36px; height: 36px;
   border-radius: 50%;
   border: 2px solid rgba(255,255,255,0.5);
-  display: flex; align-items: center; justify-content: center;
-  font-weight: 700;
-  font-size: 14px;
+  background-size: cover;
+  background-position: center;
   flex-shrink: 0;
+  overflow: hidden;
+  text-indent: -9999px;
 }
 .menu .info h3 {
   margin: 0;
@@ -157,10 +159,10 @@ input.nav { display: none; }
   box-shadow: 0 0 18px 2px currentColor;
 }
  
-.menu label[for="p1"] .dot { background: linear-gradient(135deg,#ff5e5e,#a30000); color: #ff5e5e;}
-.menu label[for="p2"] .dot { background: linear-gradient(135deg,#34e3ff,#0064a3); color: #34e3ff;}
-.menu label[for="p3"] .dot { background: linear-gradient(135deg,#ffd34f,#a36b00); color: #ffd34f;}
-.menu label[for="p4"] .dot { background: linear-gradient(135deg,#7dff8c,#0a7d2c); color: #7dff8c;}
+.menu label[for="p1"] .dot { background-image: url('me/1.jpg'); color: #ffd34f;}
+.menu label[for="p2"] .dot { background-image: url('me/2.jpg'); color: #34e3ff;}
+.menu label[for="p3"] .dot { background-image: url('me/3.jpg'); color: #ff5e5e;}
+.menu label[for="p4"] .dot { background-image: url('me/4.jpg'); color: #7dff8c;}
  
 /* ---- 3D scene ---- */
 .scene {
@@ -350,10 +352,60 @@ input.nav { display: none; }
   .desc .tags { justify-content: center; }
 }
  
-@media (max-width: 480px) {
-  .card { width: 200px; margin-left: -100px; margin-top: -120px; }
+/* ---- Phone portrait ---- */
+@media (max-width: 640px) {
+  .logo { padding-top: 18px; font-size: 12px; }
+ 
+  .layout {
+    padding: 0 14px;
+    margin: 14px auto 30px;
+    gap: 18px;
+    min-height: auto;
+  }
+ 
+  /* menu becomes a horizontal scrollable row of avatars on top */
+  .menu {
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+  }
+  .menu label {
+    flex-direction: column;
+    gap: 4px;
+    opacity: 0.5;
+  }
+  .menu .info { display: none; }
+  .menu .dot {
+    width: 44px; height: 44px;
+    font-size: 13px;
+  }
+  #p1:checked ~ .layout .menu label[for="p1"],
+  #p2:checked ~ .layout .menu label[for="p2"],
+  #p3:checked ~ .layout .menu label[for="p3"],
+  #p4:checked ~ .layout .menu label[for="p4"] {
+    opacity: 1;
+  }
+ 
+  /* name is already shown right below in the description card */
+ 
+  .scene {
+    height: 300px;
+    width: 100%;
+  }
+  .card { width: 220px; margin-left: -110px; margin-top: -130px; }
+  .photo { width: 190px; height: 190px; }
+ 
+  .descriptions { max-width: 100%; }
+  .desc h1 { font-size: 26px; letter-spacing: 1px; }
+  .desc p { font-size: 13px; line-height: 21px; }
+}
+ 
+@media (max-width: 380px) {
   .photo { width: 160px; height: 160px; }
-  .scene { height: 320px; }
+  .card { margin-top: -110px; }
+  .scene { height: 260px; }
 }
 </style>
 </head>
