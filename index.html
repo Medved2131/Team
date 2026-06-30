@@ -5,9 +5,9 @@
 <title>Команда мрії — 4 футболісти</title>
 <style>
 @import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,700,900');
-
+ 
 * { box-sizing: border-box; user-select: none; }
-
+ 
 body {
   margin: 0;
   min-height: 100vh;
@@ -21,7 +21,7 @@ body {
   color: #fff;
   overflow-x: hidden;
 }
-
+ 
 /* faint stadium pitch lines */
 body::before {
   content: '';
@@ -35,7 +35,7 @@ body::before {
   mask-image: radial-gradient(circle at 50% 40%, rgba(0,0,0,0.9), transparent 75%);
   -webkit-mask-image: radial-gradient(circle at 50% 40%, rgba(0,0,0,0.9), transparent 75%);
 }
-
+ 
 /* drifting sparkle particles */
 body::after {
   content: '';
@@ -53,14 +53,14 @@ body::after {
   background-size: 100% 100%;
   animation: twinkle 6s ease-in-out infinite alternate;
 }
-
+ 
 @keyframes twinkle {
   from { opacity: 0.4; }
   to { opacity: 1; }
 }
-
+ 
 .layout, .logo { position: relative; z-index: 1; }
-
+ 
 .logo {
   text-align: center;
   text-transform: uppercase;
@@ -76,7 +76,7 @@ body::after {
   letter-spacing: 2px;
   margin-top: 4px;
 }
-
+ 
 /* ---- layout grid: menu | scene | description ---- */
 .layout {
   display: grid;
@@ -88,10 +88,10 @@ body::after {
   padding: 0 24px;
   min-height: 70vh;
 }
-
+ 
 /* ---- menu (thumbnail list) ---- */
 input.nav { display: none; }
-
+ 
 .menu {
   display: flex;
   flex-direction: column;
@@ -106,7 +106,7 @@ input.nav { display: none; }
   transition: opacity .3s;
 }
 .menu label:hover { opacity: 0.8; }
-
+ 
 .menu .dot {
   width: 36px; height: 36px;
   border-radius: 50%;
@@ -143,7 +143,7 @@ input.nav { display: none; }
   opacity: 0.6;
   text-transform: uppercase;
 }
-
+ 
 #p1:checked ~ .menu label[for="p1"],
 #p2:checked ~ .menu label[for="p2"],
 #p3:checked ~ .menu label[for="p3"],
@@ -156,84 +156,115 @@ input.nav { display: none; }
 #p4:checked ~ .menu label[for="p4"] .dot {
   box-shadow: 0 0 18px 2px currentColor;
 }
-
+ 
 .menu label[for="p1"] .dot { background: linear-gradient(135deg,#ff5e5e,#a30000); color: #ff5e5e;}
 .menu label[for="p2"] .dot { background: linear-gradient(135deg,#34e3ff,#0064a3); color: #34e3ff;}
 .menu label[for="p3"] .dot { background: linear-gradient(135deg,#ffd34f,#a36b00); color: #ffd34f;}
 .menu label[for="p4"] .dot { background: linear-gradient(135deg,#7dff8c,#0a7d2c); color: #7dff8c;}
-
+ 
 /* ---- 3D scene ---- */
 .scene {
   position: relative;
   height: 420px;
-  perspective: 1400px;
 }
-
-.player {
+ 
+.card {
   position: absolute;
   left: 50%;
   top: 50%;
+  width: 260px;
+  margin-left: -130px;
+  margin-top: -160px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform .8s cubic-bezier(.33,0,0,1), opacity .6s;
+}
+ 
+.photo {
   width: 220px;
   height: 220px;
-  margin-left: -110px;
-  margin-top: -110px;
   border-radius: 50%;
-  transition: transform 1.3s cubic-bezier(.33,0,0,1), opacity .9s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 64px;
-  font-weight: 900;
-  box-shadow: 0 0 60px 10px rgba(0,0,0,0.5), 0 0 0 6px rgba(255,255,255,0.06);
-}
-
-.player.ball1 { background: url('me/1.jpg') center/cover no-repeat, radial-gradient(circle at 35% 30%, #ffe89e, #a36b00); }
-.player.ball2 { background: url('me/2.jpg') center/cover no-repeat, radial-gradient(circle at 35% 30%, #7fe9ff, #0064a3); }
-.player.ball3 { background: url('me/3.jpg') center/cover no-repeat, radial-gradient(circle at 35% 30%, #ff8e8e, #a30000); }
-.player.ball4 { background: url('me/4.jpg') center/cover no-repeat, radial-gradient(circle at 35% 30%, #b6ffc0, #0a7d2c); }
-
-/* default stacked offstage */
-.player { transform: translateZ(-900px) translateX(0) rotateY(0deg) scale(0.6); opacity: 0; }
-
-/* active / neighbors positions, set per radio */
-#p1:checked ~ .scene .ball1,
-#p2:checked ~ .scene .ball2,
-#p3:checked ~ .scene .ball3,
-#p4:checked ~ .scene .ball4 {
-  transform: translateZ(0) translateX(0) rotateY(0deg) scale(1);
-  opacity: 1;
-  z-index: 4;
-}
-
-/* p1 active -> neighbours */
-#p1:checked ~ .layout .scene .ball2 { transform: translateZ(-260px) translateX(150px) rotateY(-25deg) scale(0.7); opacity: 0.5; z-index: 2;}
-#p1:checked ~ .layout .scene .ball4 { transform: translateZ(-260px) translateX(-150px) rotateY(25deg) scale(0.7); opacity: 0.5; z-index: 2;}
-#p1:checked ~ .layout .scene .ball3 { transform: translateZ(-600px) scale(0.45); opacity: 0.12; z-index: 1;}
-
-#p2:checked ~ .layout .scene .ball3 { transform: translateZ(-260px) translateX(150px) rotateY(-25deg) scale(0.7); opacity: 0.5; z-index: 2;}
-#p2:checked ~ .layout .scene .ball1 { transform: translateZ(-260px) translateX(-150px) rotateY(25deg) scale(0.7); opacity: 0.5; z-index: 2;}
-#p2:checked ~ .layout .scene .ball4 { transform: translateZ(-600px) scale(0.45); opacity: 0.12; z-index: 1;}
-
-#p3:checked ~ .layout .scene .ball4 { transform: translateZ(-260px) translateX(150px) rotateY(-25deg) scale(0.7); opacity: 0.5; z-index: 2;}
-#p3:checked ~ .layout .scene .ball2 { transform: translateZ(-260px) translateX(-150px) rotateY(25deg) scale(0.7); opacity: 0.5; z-index: 2;}
-#p3:checked ~ .layout .scene .ball1 { transform: translateZ(-600px) scale(0.45); opacity: 0.12; z-index: 1;}
-
-#p4:checked ~ .layout .scene .ball1 { transform: translateZ(-260px) translateX(150px) rotateY(-25deg) scale(0.7); opacity: 0.5; z-index: 2;}
-#p4:checked ~ .layout .scene .ball3 { transform: translateZ(-260px) translateX(-150px) rotateY(25deg) scale(0.7); opacity: 0.5; z-index: 2;}
-#p4:checked ~ .layout .scene .ball2 { transform: translateZ(-600px) scale(0.45); opacity: 0.12; z-index: 1;}
-
-/* gentle floating animation for the active ball */
-@keyframes float {
-  0%, 100% { margin-top: -110px; }
-  50% { margin-top: -130px; }
-}
-#p1:checked ~ .scene .ball1,
-#p2:checked ~ .scene .ball2,
-#p3:checked ~ .scene .ball3,
-#p4:checked ~ .scene .ball4 {
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.55), 0 0 0 4px rgba(255,255,255,0.08);
   animation: float 3.4s ease-in-out infinite;
 }
-
+ 
+.ball1 .photo { background-image: url('me/1.jpg'); }
+.ball2 .photo { background-image: url('me/2.jpg'); }
+.ball3 .photo { background-image: url('me/3.jpg'); }
+.ball4 .photo { background-image: url('me/4.jpg'); }
+ 
+.label {
+  margin-top: 14px;
+  text-align: center;
+}
+.label h4 {
+  margin: 0;
+  font-size: 15px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.label p {
+  margin: 3px 0 0;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  opacity: 0.65;
+}
+ 
+/* default: hidden behind, scaled down */
+.card { transform: scale(0.55); opacity: 0; z-index: 1; pointer-events: none; }
+ 
+/* active player: big, sharp, glowing ring matching his color */
+#p1:checked ~ .layout .scene .ball1,
+#p2:checked ~ .layout .scene .ball2,
+#p3:checked ~ .layout .scene .ball3,
+#p4:checked ~ .layout .scene .ball4 {
+  transform: scale(1);
+  opacity: 1;
+  z-index: 5;
+  pointer-events: auto;
+}
+#p1:checked ~ .layout .scene .ball1 .photo { box-shadow: 0 20px 50px rgba(0,0,0,0.55), 0 0 0 5px #ffd34f; }
+#p2:checked ~ .layout .scene .ball2 .photo { box-shadow: 0 20px 50px rgba(0,0,0,0.55), 0 0 0 5px #34e3ff; }
+#p3:checked ~ .layout .scene .ball3 .photo { box-shadow: 0 20px 50px rgba(0,0,0,0.55), 0 0 0 5px #ff5e5e; }
+#p4:checked ~ .layout .scene .ball4 .photo { box-shadow: 0 20px 50px rgba(0,0,0,0.55), 0 0 0 5px #7dff8c; }
+ 
+/* the other three peek out slightly behind, smaller and dimmed */
+#p1:checked ~ .layout .scene .ball2,
+#p2:checked ~ .layout .scene .ball3,
+#p3:checked ~ .layout .scene .ball4,
+#p4:checked ~ .layout .scene .ball1 {
+  transform: translateX(150px) scale(0.55);
+  opacity: 0.4;
+  z-index: 2;
+}
+#p1:checked ~ .layout .scene .ball4,
+#p2:checked ~ .layout .scene .ball1,
+#p3:checked ~ .layout .scene .ball2,
+#p4:checked ~ .layout .scene .ball3 {
+  transform: translateX(-150px) scale(0.55);
+  opacity: 0.4;
+  z-index: 2;
+}
+#p1:checked ~ .layout .scene .ball3,
+#p2:checked ~ .layout .scene .ball4,
+#p3:checked ~ .layout .scene .ball1,
+#p4:checked ~ .layout .scene .ball2 {
+  transform: scale(0.4);
+  opacity: 0.1;
+  z-index: 1;
+}
+ 
+/* gentle floating animation for the photo only, label stays put */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+ 
 /* ---- description panel ---- */
 .descriptions {
   position: relative;
@@ -286,7 +317,7 @@ input.nav { display: none; }
   border-radius: 20px;
   opacity: 0.8;
 }
-
+ 
 #p1:checked ~ .layout .descriptions .desc1,
 #p2:checked ~ .layout .descriptions .desc2,
 #p3:checked ~ .layout .descriptions .desc3,
@@ -295,12 +326,12 @@ input.nav { display: none; }
   pointer-events: auto;
   transform: translateY(-50%) translateX(0);
 }
-
+ 
 .desc1 h1, .desc1 .tag { color: #ff8e8e; border-color: #ff5e5e44; }
 .desc2 h1, .desc2 .tag { color: #7fe9ff; border-color: #34e3ff44; }
 .desc3 h1, .desc3 .tag { color: #ffe89e; border-color: #ffd34f44; }
 .desc4 h1, .desc4 .tag { color: #b6ffc0; border-color: #7dff8c44; }
-
+ 
 @media (max-width: 1000px) {
   .layout {
     grid-template-columns: 1fr;
@@ -318,22 +349,23 @@ input.nav { display: none; }
   #p4:checked ~ .layout .descriptions .desc4 { display: block; }
   .desc .tags { justify-content: center; }
 }
-
+ 
 @media (max-width: 480px) {
-  .player { width: 160px; height: 160px; margin-left: -80px; margin-top: -80px; font-size: 36px; }
+  .card { width: 200px; margin-left: -100px; margin-top: -120px; }
+  .photo { width: 160px; height: 160px; }
   .scene { height: 320px; }
 }
 </style>
 </head>
 <body>
-
+ 
 <input class="nav" type="radio" name="player" id="p1" checked>
 <input class="nav" type="radio" name="player" id="p2">
 <input class="nav" type="radio" name="player" id="p3">
 <input class="nav" type="radio" name="player" id="p4">
-
+ 
 <div class="logo">Команда мрії<span>чотири легенди двору</span></div>
-
+ 
 <div class="layout">
 <nav class="menu">
   <label for="p1"><span class="dot">МС</span><span class="info"><h3>Медведь Сергій <span class="captain">©</span></h3><p>Півзахисник</p></span></label>
@@ -341,14 +373,26 @@ input.nav { display: none; }
   <label for="p3"><span class="dot">КД</span><span class="info"><h3>Капиця Данило</h3><p>Нападник</p></span></label>
   <label for="p4"><span class="dot">ПБ</span><span class="info"><h3>Погорілко Богдан</h3><p>Захисник</p></span></label>
 </nav>
-
+ 
 <div class="scene">
-  <div class="player ball1"></div>
-  <div class="player ball2"></div>
-  <div class="player ball3"></div>
-  <div class="player ball4"></div>
+  <div class="card ball1">
+    <div class="photo"></div>
+    <div class="label"><h4>Медведь Сергій</h4><p>Капітан · Півзахисник</p></div>
+  </div>
+  <div class="card ball2">
+    <div class="photo"></div>
+    <div class="label"><h4>Шевченко Максим</h4><p>Воротар</p></div>
+  </div>
+  <div class="card ball3">
+    <div class="photo"></div>
+    <div class="label"><h4>Капиця Данило</h4><p>Нападник</p></div>
+  </div>
+  <div class="card ball4">
+    <div class="photo"></div>
+    <div class="label"><h4>Погорілко Богдан</h4><p>Захисник</p></div>
+  </div>
 </div>
-
+ 
 <div class="descriptions">
   <div class="desc desc1">
     <h2>Гравець №1</h2>
@@ -392,6 +436,33 @@ input.nav { display: none; }
   </div>
 </div>
 </div>
-
+ 
 </body>
+<script>
+  let audioCtx;
+  function playClick() {
+    try {
+      audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+      const now = audioCtx.currentTime;
+ 
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(720, now);
+      osc.frequency.exponentialRampToValueAtTime(420, now + 0.09);
+ 
+      gain.gain.setValueAtTime(0.0001, now);
+      gain.gain.exponentialRampToValueAtTime(0.18, now + 0.01);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.16);
+ 
+      osc.connect(gain).connect(audioCtx.destination);
+      osc.start(now);
+      osc.stop(now + 0.18);
+    } catch (e) { /* audio not available — fail silently */ }
+  }
+ 
+  document.querySelectorAll('.menu label').forEach(el => {
+    el.addEventListener('click', playClick);
+  });
+</script>
 </html>
