@@ -175,11 +175,12 @@ input.nav { display: none; }
   left: 50%;
   top: 50%;
   width: 260px;
+  height: 220px;
   margin-left: -130px;
-  margin-top: -160px;
+  margin-top: -110px;
   display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-content: center;
   transition: transform .8s cubic-bezier(.33,0,0,1), opacity .6s;
 }
  
@@ -197,25 +198,6 @@ input.nav { display: none; }
 .ball2 .photo { background-image: url('me/2.jpg'); }
 .ball3 .photo { background-image: url('me/3.jpg'); }
 .ball4 .photo { background-image: url('me/4.jpg'); }
- 
-.label {
-  margin-top: 14px;
-  text-align: center;
-}
-.label h4 {
-  margin: 0;
-  font-size: 15px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  font-weight: 700;
-}
-.label p {
-  margin: 3px 0 0;
-  font-size: 10px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  opacity: 0.65;
-}
  
 /* default: hidden behind, scaled down */
 .card { transform: scale(0.55); opacity: 0; z-index: 1; pointer-events: none; }
@@ -391,26 +373,26 @@ input.nav { display: none; }
   /* name is already shown right below in the description card */
  
   .scene {
-    height: 360px;
+    height: 280px;
     width: 100%;
     overflow: hidden;
   }
-  .card { width: 220px; margin-left: -110px; margin-top: -110px; }
+  .card { width: 220px; height: 190px; margin-left: -110px; margin-top: -95px; }
   .photo { width: 190px; height: 190px; }
  
-  /* keep peeking neighbours close so they don't get clipped off-screen */
+  /* peeking neighbours: a bit wider apart, safely cropped by .scene overflow:hidden */
   #p1:checked ~ .layout .scene .ball2,
   #p2:checked ~ .layout .scene .ball3,
   #p3:checked ~ .layout .scene .ball4,
   #p4:checked ~ .layout .scene .ball1 {
-    transform: translateX(95px) scale(0.5);
+    transform: translateX(135px) scale(0.55);
     opacity: 0.3;
   }
   #p1:checked ~ .layout .scene .ball4,
   #p2:checked ~ .layout .scene .ball1,
   #p3:checked ~ .layout .scene .ball2,
   #p4:checked ~ .layout .scene .ball3 {
-    transform: translateX(-95px) scale(0.5);
+    transform: translateX(-135px) scale(0.55);
     opacity: 0.3;
   }
  
@@ -421,19 +403,19 @@ input.nav { display: none; }
  
 @media (max-width: 380px) {
   .photo { width: 150px; height: 150px; }
-  .card { margin-top: -95px; }
-  .scene { height: 300px; }
+  .card { height: 150px; margin-top: -75px; }
+  .scene { height: 230px; }
   #p1:checked ~ .layout .scene .ball2,
   #p2:checked ~ .layout .scene .ball3,
   #p3:checked ~ .layout .scene .ball4,
   #p4:checked ~ .layout .scene .ball1 {
-    transform: translateX(70px) scale(0.45);
+    transform: translateX(105px) scale(0.5);
   }
   #p1:checked ~ .layout .scene .ball4,
   #p2:checked ~ .layout .scene .ball1,
   #p3:checked ~ .layout .scene .ball2,
   #p4:checked ~ .layout .scene .ball3 {
-    transform: translateX(-70px) scale(0.45);
+    transform: translateX(-105px) scale(0.5);
   }
 }
 </style>
@@ -458,19 +440,15 @@ input.nav { display: none; }
 <div class="scene">
   <div class="card ball1">
     <div class="photo"></div>
-    <div class="label"><h4>Медведь Сергій</h4><p>Капітан · Півзахисник</p></div>
   </div>
   <div class="card ball2">
     <div class="photo"></div>
-    <div class="label"><h4>Шевченко Максим</h4><p>Воротар</p></div>
   </div>
   <div class="card ball3">
     <div class="photo"></div>
-    <div class="label"><h4>Капиця Данило</h4><p>Нападник</p></div>
   </div>
   <div class="card ball4">
     <div class="photo"></div>
-    <div class="label"><h4>Погорілко Богдан</h4><p>Захисник</p></div>
   </div>
 </div>
  
