@@ -359,7 +359,7 @@ input.nav { display: none; }
   .layout {
     padding: 0 14px;
     margin: 14px auto 30px;
-    gap: 18px;
+    gap: 26px;
     min-height: auto;
   }
  
@@ -391,21 +391,50 @@ input.nav { display: none; }
   /* name is already shown right below in the description card */
  
   .scene {
-    height: 300px;
+    height: 360px;
     width: 100%;
+    overflow: hidden;
   }
-  .card { width: 220px; margin-left: -110px; margin-top: -130px; }
+  .card { width: 220px; margin-left: -110px; margin-top: -110px; }
   .photo { width: 190px; height: 190px; }
  
-  .descriptions { max-width: 100%; }
+  /* keep peeking neighbours close so they don't get clipped off-screen */
+  #p1:checked ~ .layout .scene .ball2,
+  #p2:checked ~ .layout .scene .ball3,
+  #p3:checked ~ .layout .scene .ball4,
+  #p4:checked ~ .layout .scene .ball1 {
+    transform: translateX(95px) scale(0.5);
+    opacity: 0.3;
+  }
+  #p1:checked ~ .layout .scene .ball4,
+  #p2:checked ~ .layout .scene .ball1,
+  #p3:checked ~ .layout .scene .ball2,
+  #p4:checked ~ .layout .scene .ball3 {
+    transform: translateX(-95px) scale(0.5);
+    opacity: 0.3;
+  }
+ 
+  .descriptions { max-width: 100%; margin-top: 6px; }
   .desc h1 { font-size: 26px; letter-spacing: 1px; }
   .desc p { font-size: 13px; line-height: 21px; }
 }
  
 @media (max-width: 380px) {
-  .photo { width: 160px; height: 160px; }
-  .card { margin-top: -110px; }
-  .scene { height: 260px; }
+  .photo { width: 150px; height: 150px; }
+  .card { margin-top: -95px; }
+  .scene { height: 300px; }
+  #p1:checked ~ .layout .scene .ball2,
+  #p2:checked ~ .layout .scene .ball3,
+  #p3:checked ~ .layout .scene .ball4,
+  #p4:checked ~ .layout .scene .ball1 {
+    transform: translateX(70px) scale(0.45);
+  }
+  #p1:checked ~ .layout .scene .ball4,
+  #p2:checked ~ .layout .scene .ball1,
+  #p3:checked ~ .layout .scene .ball2,
+  #p4:checked ~ .layout .scene .ball3 {
+    transform: translateX(-70px) scale(0.45);
+  }
 }
 </style>
 </head>
@@ -416,7 +445,7 @@ input.nav { display: none; }
 <input class="nav" type="radio" name="player" id="p3">
 <input class="nav" type="radio" name="player" id="p4">
  
-<div class="logo">Команда мрії<span>чотири легенди двору</span></div>
+<div class="logo">Команда мрії<span>чотири легенди Риботина</span></div>
  
 <div class="layout">
 <nav class="menu">
